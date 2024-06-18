@@ -1,35 +1,42 @@
-CREATE DATABASE AStech;
-USE ASTech;
-Create table USUARIOS
-(
-ID int auto_increment PRIMARY key,
-nome VARCHAR (100),
-email VARCHAR (100),
-telefone VARCHAR (100),
-endereco_rua VARCHAR (80),
-enedereco_numero VARCHAR (80),
-endereco_estado VARCHAR (80),
-endereco_cep VARCHAR (80),
-meio_de_contato VARCHAR (100)
+/*
+=======================================
+Author: Joäo Pedro Martins
+Data Alteração / Criação: 18/06/2024
+=======================================
+*/
+
+Create table IF NOT EXISTS tblUsuario(
+    ID int not null auto_increment PRIMARY key,
+    nome VARCHAR (255),
+    email VARCHAR (255),
+    telefone VARCHAR (11),
+    endereco_rua longtext,
+    enedereco_numero int ,
+    endereco_estado VARCHAR (2),
+    endereco_cep VARCHAR (8),
+    meio_de_contato VARCHAR (100)
 );
 
-Create table APARELHO(
-ID int auto_increment Primary Key,
-marca VARCHAR (30),
-modelo VARCHAR (30),
-numero_serie VARCHAR (50),
-ano_fabricacao VARCHAR (4),
-outras_espeficacoes VARCHAR (200),
-FOREIGN KEY (ID) REFERENCES USUARIOS(ID)
+Create table IF NOT EXISTS tblAparelho(
+    ID int not null auto_increment Primary Key,
+    tipo_aparelho VARCHAR (150),
+    marca VARCHAR (150),
+    modelo VARCHAR (150),
+    numero_serie VARCHAR (50),
+    imei VARCHAR (50), 
+    estado_garantia bool,
+    outras_espeficacoes VARCHAR (200),
+    id_usuario int not null,
+    FOREIGN KEY (id_usuario) REFERENCES tblUsuario(ID)
 );
 
-Create table Problema(
-ID int auto_increment Primary Key,
-descricao VARCHAR (500),
-data_inicio VARCHAR (8),
-frequencia  VARCHAR (20),
-passos_tomados VARCHAR (500),
-erro_alerta VARCHAR (300),
-FOREIGN KEY (ID) REFERENCES APARELHO (ID)
-
+Create table IF NOT EXISTS tblProblema(
+    ID int not null auto_increment Primary Key,
+    descricao longtext,
+    conduta  longtext,
+    sintomas longtext,
+    comportamento longtext,
+    erro_alerta longtext,
+    id_aparelho int not null,
+    FOREIGN KEY (id_aparelho) REFERENCES tblAparelho(ID)
 );
