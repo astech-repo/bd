@@ -1,12 +1,15 @@
 /*
 =======================================
-Author: Joäo Pedro Martins
-Data Alteração / Criação: 18/06/2024
+Author: José Vinícius Soares Nunes
+Data Alteração / Criação: 19/06/2024
 =======================================
 */
 
+CREATE DATABASE astech_db;
+use astech_db;
+
 Create table IF NOT EXISTS tblUsuario(
-    ID int not null auto_increment PRIMARY key,
+    id_usuario int not null auto_increment PRIMARY key,
     nome VARCHAR (255),
     email VARCHAR (255),
     telefone VARCHAR (11),
@@ -18,7 +21,7 @@ Create table IF NOT EXISTS tblUsuario(
 );
 
 Create table IF NOT EXISTS tblAparelho(
-    ID int not null auto_increment Primary Key,
+    id_aparelho int not null auto_increment Primary Key,
     tipo_aparelho VARCHAR (150),
     marca VARCHAR (150),
     modelo VARCHAR (150),
@@ -27,11 +30,11 @@ Create table IF NOT EXISTS tblAparelho(
     estado_garantia bool,
     outras_espeficacoes VARCHAR (200),
     id_usuario int not null,
-    FOREIGN KEY (id_usuario) REFERENCES tblUsuario(ID)
+    FOREIGN KEY (id_usuario) REFERENCES tblUsuario(id_usuario)
 );
 
 Create table IF NOT EXISTS tblProblema(
-    ID int not null auto_increment Primary Key,
+    id_problema int not null auto_increment Primary Key,
     descricao longtext,
     conduta  longtext,
     sintomas longtext,
@@ -39,5 +42,12 @@ Create table IF NOT EXISTS tblProblema(
     erro_alerta longtext,
     imagem longtext,
     id_aparelho int not null,
-    FOREIGN KEY (id_aparelho) REFERENCES tblAparelho(ID)
+    FOREIGN KEY (id_aparelho) REFERENCES tblAparelho(id_aparelho)
+);
+
+Create table IF NOT EXISTS tblEmergencial(
+    id_emergencial int not null auto_increment Primary Key,
+    status_emergencia boolean,
+    id_usuario int not null,
+    FOREIGN KEY (id_usuario) REFERENCES tblUsuario(id_usuario)
 );

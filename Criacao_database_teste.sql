@@ -1,3 +1,10 @@
+/*
+=======================================
+Author: José Vinícius Soares Nunes
+Data Alteração / Criação: 19/06/2024
+=======================================
+*/
+
 CREATE DATABASE mustech_db;
 use mustech_db;
 
@@ -35,4 +42,11 @@ Create table IF NOT EXISTS tblProblema(
     erro_alerta longtext,
     id_aparelho int not null,
     FOREIGN KEY (id_aparelho) REFERENCES tblAparelho(id_aparelho)
+);
+
+Create table IF NOT EXISTS tblEmergencial(
+    id_emergencial int not null auto_increment Primary Key,
+    status_emergencia boolean,
+    id_usuario int not null,
+    FOREIGN KEY (id_usuario) REFERENCES tblUsuario(id_usuario)
 );
