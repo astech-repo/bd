@@ -87,7 +87,7 @@ BEGIN
         p_conduta, 
         p_sintomas, 
         p_comportamento, 
-        p_erro_alerta, 
+        p_erro_alerta,
         v_last_id
     );
     
