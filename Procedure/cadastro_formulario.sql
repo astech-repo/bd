@@ -25,7 +25,8 @@ CREATE PROCEDURE InsertAparelhoProblema(
     IN p_conduta LONGTEXT,
     IN p_sintomas LONGTEXT,
     IN p_comportamento LONGTEXT,
-    IN p_erro_alerta LONGTEXT
+    IN p_erro_alerta LONGTEXT,
+    IN p_imagem LONGTEXT
 )
 BEGIN
     DECLARE v_id_usuario INT;
@@ -88,6 +89,7 @@ BEGIN
         p_sintomas, 
         p_comportamento, 
         p_erro_alerta, 
+        p_imagem,
         v_last_id
     );
     
