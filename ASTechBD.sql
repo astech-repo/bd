@@ -37,7 +37,6 @@ Create table IF NOT EXISTS tblProblema(
     sintomas longtext,
     comportamento longtext,
     erro_alerta longtext,
-    imagem longtext,
     id_aparelho int not null,
     FOREIGN KEY (id_aparelho) REFERENCES tblAparelho(ID)
 );
